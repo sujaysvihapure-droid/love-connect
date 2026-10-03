@@ -5480,10 +5480,9 @@
 
             }
         );
-
         /* =====================================================
-   📸 RECEIVE PHOTO
-===================================================== */
+       📸 RECEIVE PHOTO - VIEW ONCE MOMENT
+    ===================================================== */
 
         socket.on(
             "receive-photo",
@@ -5496,52 +5495,376 @@
                     return;
                 }
 
+
                 message.innerText =
                     "📸 You received a Moment ❤️";
 
+
                 createHeartBurst();
 
-                const receivedImage =
-                    document.createElement(
-                        "img"
-                    );
 
-                receivedImage.src =
-                    data.image;
+                /* =================================================
+                   MOMENT CARD
+                ================================================= */
 
-                receivedImage.alt =
-                    "Moment from your partner";
+                const momentCard =
+                    document.createElement("div");
 
-                receivedImage.style.width =
+
+                momentCard.style.width =
                     "100%";
 
-                receivedImage.style.maxWidth =
+                momentCard.style.maxWidth =
                     "320px";
 
-                receivedImage.style.display =
-                    "block";
+                momentCard.style.margin =
+                    "14px auto";
 
-                receivedImage.style.margin =
-                    "12px auto";
+                momentCard.style.padding =
+                    "22px";
 
-                receivedImage.style.borderRadius =
-                    "20px";
+                momentCard.style.borderRadius =
+                    "22px";
 
-                receivedImage.style.boxShadow =
+                momentCard.style.background =
+                    "linear-gradient(135deg, rgba(255,70,150,0.20), rgba(110,70,255,0.20))";
+
+                momentCard.style.border =
+                    "1px solid rgba(255,255,255,0.14)";
+
+                momentCard.style.textAlign =
+                    "center";
+
+                momentCard.style.cursor =
+                    "pointer";
+
+                momentCard.style.boxShadow =
                     "0 10px 30px rgba(0,0,0,0.35)";
 
+
+                momentCard.innerHTML =
+                    `
+                <div
+                    style="
+                        font-size:46px;
+                        line-height:1;
+                    "
+                >
+                    📸
+                </div>
+
+                <div
+                    style="
+                        margin-top:10px;
+                        font-size:18px;
+                        font-weight:700;
+                    "
+                >
+                    A Moment for you ❤️
+                </div>
+
+                <div
+                    style="
+                        margin-top:7px;
+                        font-size:13px;
+                        opacity:0.72;
+                    "
+                >
+                    Tap to view once
+                </div>
+            `;
+
+
                 responseArea.appendChild(
-                    receivedImage
+                    momentCard
                 );
 
-                responseArea.scrollIntoView({
+
+                momentCard.scrollIntoView({
                     behavior: "smooth",
                     block: "center"
                 });
 
+
+                /* =================================================
+                   OPEN VIEW ONCE PHOTO
+                ================================================= */
+
+                momentCard.addEventListener(
+                    "click",
+                    () => {
+
+                        /* Create fullscreen viewer */
+
+                        const viewer =
+                            document.createElement("div");
+
+
+                        viewer.style.position =
+                            "fixed";
+
+                        viewer.style.inset =
+                            "0";
+
+                        viewer.style.zIndex =
+                            "9999";
+
+                        viewer.style.background =
+                            "rgba(0,0,0,0.94)";
+
+                        viewer.style.display =
+                            "flex";
+
+                        viewer.style.alignItems =
+                            "center";
+
+                        viewer.style.justifyContent =
+                            "center";
+
+                        viewer.style.padding =
+                            "20px";
+
+                        viewer.style.boxSizing =
+                            "border-box";
+
+                        viewer.style.backdropFilter =
+                            "blur(10px)";
+
+
+                        /* =================================================
+                           PHOTO
+                        ================================================= */
+
+                        const image =
+                            document.createElement("img");
+
+
+                        image.src =
+                            data.image;
+
+                        image.alt =
+                            "Moment";
+
+                        image.style.maxWidth =
+                            "100%";
+
+                        image.style.maxHeight =
+                            "85vh";
+
+                        image.style.objectFit =
+                            "contain";
+
+                        image.style.borderRadius =
+                            "18px";
+
+                        image.style.boxShadow =
+                            "0 20px 60px rgba(0,0,0,0.65)";
+
+
+                        /* =================================================
+                           CLOSE BUTTON
+                        ================================================= */
+
+                        const closeButton =
+                            document.createElement("button");
+
+
+                        closeButton.innerText =
+                            "✕";
+
+
+                        closeButton.style.position =
+                            "absolute";
+
+                        closeButton.style.top =
+                            "20px";
+
+                        closeButton.style.right =
+                            "20px";
+
+                        closeButton.style.width =
+                            "44px";
+
+                        closeButton.style.height =
+                            "44px";
+
+                        closeButton.style.border =
+                            "none";
+
+                        closeButton.style.borderRadius =
+                            "50%";
+
+                        closeButton.style.background =
+                            "rgba(255,255,255,0.14)";
+
+                        closeButton.style.color =
+                            "#fff";
+
+                        closeButton.style.fontSize =
+                            "20px";
+
+                        closeButton.style.cursor =
+                            "pointer";
+
+                        closeButton.style.backdropFilter =
+                            "blur(8px)";
+
+
+                        /* =================================================
+                           VIEW ONCE TEXT
+                        ================================================= */
+
+                        const viewOnceText =
+                            document.createElement("div");
+
+
+                        viewOnceText.innerText =
+                            "📸 View Once • Tap anywhere to close";
+
+
+                        viewOnceText.style.position =
+                            "absolute";
+
+                        viewOnceText.style.bottom =
+                            "25px";
+
+                        viewOnceText.style.left =
+                            "0";
+
+                        viewOnceText.style.right =
+                            "0";
+
+                        viewOnceText.style.textAlign =
+                            "center";
+
+                        viewOnceText.style.color =
+                            "rgba(255,255,255,0.78)";
+
+                        viewOnceText.style.fontSize =
+                            "13px";
+
+
+                        viewer.appendChild(
+                            image
+                        );
+
+                        viewer.appendChild(
+                            closeButton
+                        );
+
+                        viewer.appendChild(
+                            viewOnceText
+                        );
+
+
+                        document.body.appendChild(
+                            viewer
+                        );
+
+
+                        /* =================================================
+                           CLOSE + DELETE MOMENT
+                        ================================================= */
+
+                        let alreadyClosed =
+                            false;
+
+
+                        function closeMoment() {
+
+                            if (
+                                alreadyClosed
+                            ) {
+                                return;
+                            }
+
+
+                            alreadyClosed =
+                                true;
+
+
+                            /*
+                               Remove fullscreen viewer
+                            */
+
+                            viewer.remove();
+
+
+                            /*
+                               Remove the original
+                               moment card permanently
+                            */
+
+                            momentCard.remove();
+
+
+                            /*
+                               Clear image reference
+                            */
+
+                            image.src =
+                                "";
+
+
+                            data.image =
+                                null;
+
+
+                            message.innerText =
+                                "📸 Moment viewed ❤️";
+
+                        }
+
+
+                        /* X button */
+
+                        closeButton.addEventListener(
+                            "click",
+                            (event) => {
+
+                                event.stopPropagation();
+
+                                closeMoment();
+
+                            }
+                        );
+
+
+                        /* Tap anywhere outside photo */
+
+                        viewer.addEventListener(
+                            "click",
+                            (event) => {
+
+                                if (
+                                    event.target ===
+                                    viewer
+                                ) {
+
+                                    closeMoment();
+
+                                }
+
+                            }
+                        );
+
+
+                        /* Tap directly on photo */
+
+                        image.addEventListener(
+                            "click",
+                            () => {
+
+                                closeMoment();
+
+                            }
+                        );
+
+                    }
+                );
+
             }
         );
-
 
         /* =====================================================
            SOCKET CONNECTED
