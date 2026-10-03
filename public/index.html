@@ -1,0 +1,5500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Love Connect ❤️</title>
+
+    <style>
+        /* =====================================================
+   GLOBAL
+===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+
+            min-height: 100dvh;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            color: white;
+
+            background:
+                radial-gradient(circle at 10% 10%,
+                    #4a173e,
+                    transparent 42%),
+                radial-gradient(circle at 90% 90%,
+                    #171b4a,
+                    transparent 48%),
+                #08080d;
+
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+
+        /* =====================================================
+   APP
+===================================================== */
+
+        .app {
+
+            width: 94%;
+            max-width: 430px;
+            min-height: 100dvh;
+
+            margin: 0 auto;
+
+            padding:
+                max(10px, env(safe-area-inset-top)) 0 max(10px, env(safe-area-inset-bottom));
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            text-align: center;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* =====================================================
+   HEADER
+===================================================== */
+
+        .logo {
+
+            width: 62px;
+            height: 62px;
+
+            margin: 0 auto 7px;
+
+            border-radius: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+
+            background:
+                linear-gradient(135deg,
+                    #ff2d75,
+                    #a855f7);
+
+            box-shadow:
+                0 14px 45px rgba(255, 45, 117, 0.3);
+
+            flex-shrink: 0;
+        }
+
+        h1 {
+
+            margin: 0;
+
+            font-size: 30px;
+            line-height: 1.1;
+
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+
+            margin-top: 5px;
+
+            color: #aaaaba;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+   DATE SCREEN
+===================================================== */
+
+        #dateScreen {
+
+            width: 100%;
+
+            margin-top: 22px;
+
+            padding: 30px 25px;
+
+            border-radius: 27px;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.09);
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.25);
+        }
+
+        .question {
+
+            font-size: 22px;
+
+            font-weight: 650;
+
+            margin-bottom: 9px;
+        }
+
+        .hint {
+
+            font-size: 15px;
+
+            color: #898999;
+
+            margin-bottom: 21px;
+        }
+
+        #dateInput {
+
+            width: 100%;
+            height: 58px;
+
+            padding: 14px;
+
+            border-radius: 15px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.1);
+
+            outline: none;
+
+            background:
+                rgba(0, 0, 0, 0.3);
+
+            color: white;
+
+            text-align: center;
+
+            font-size: 18px;
+        }
+
+        #dateInput::placeholder {
+
+            color: #777783;
+        }
+
+        #continueButton {
+
+            width: 100%;
+            height: 58px;
+
+            margin-top: 16px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(135deg,
+                    #ff2d75,
+                    #a855f7);
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: 650;
+
+            cursor: pointer;
+        }
+
+        #continueButton:disabled {
+
+            opacity: 0.6;
+        }
+
+        #status {
+
+            margin-top: 13px;
+
+            min-height: 20px;
+
+            font-size: 14px;
+
+            color: #aaaaba;
+        }
+
+
+        /* =====================================================
+   GENDER SCREEN
+===================================================== */
+
+        #genderScreen {
+
+            display: none;
+
+            width: 100%;
+
+            margin-top: 22px;
+
+            padding: 28px 22px;
+
+            border-radius: 27px;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.09);
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.25);
+        }
+
+        .gender-question {
+
+            font-size: 25px;
+
+            font-weight: 650;
+
+            margin-bottom: 7px;
+        }
+
+        .gender-hint {
+
+            font-size: 13px;
+
+            color: #898999;
+
+            margin-bottom: 20px;
+        }
+
+        .gender-options {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+        }
+
+        .gender-option {
+
+            height: 105px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.10);
+
+            border-radius: 19px;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.15s,
+                background 0.15s;
+        }
+
+        .gender-option span {
+
+            display: block;
+
+            font-size: 36px;
+
+            margin-bottom: 6px;
+        }
+
+        .gender-option:active {
+
+            transform: scale(0.95);
+        }
+
+
+        /* =====================================================
+   LOVE SCREEN
+===================================================== */
+
+        #loveScreen {
+
+            display: none;
+
+            width: 100%;
+        }
+
+        .connected {
+
+            margin-top: 9px;
+
+            font-size: 13px;
+
+            color: #9be7b0;
+        }
+
+
+        /* =====================================================
+   MAIN LOVE BUTTONS
+===================================================== */
+
+        .love-actions {
+
+            margin-top: 14px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 8px;
+        }
+
+        .love-action {
+
+            height: 88px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.09);
+
+            border-radius: 19px;
+
+            padding: 10px;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            transition:
+                transform 0.15s,
+                background 0.15s;
+        }
+
+        .love-action span {
+
+            display: block;
+
+            font-size: 31px;
+
+            line-height: 34px;
+
+            margin-bottom: 5px;
+        }
+
+        .love-action:active {
+
+            transform: scale(0.95);
+        }
+
+
+        /* =====================================================
+   SPECIAL BUTTONS
+===================================================== */
+
+        .special-actions {
+
+            margin-top: 9px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 8px;
+        }
+
+        .special-button {
+
+            height: 68px;
+
+            border: none;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(255, 45, 117, 0.16),
+                    rgba(168, 85, 247, 0.16));
+
+            border:
+                1px solid rgba(255, 255, 255, 0.09);
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            padding: 8px;
+        }
+
+        .special-button span {
+
+            display: block;
+
+            font-size: 27px;
+
+            line-height: 29px;
+
+            margin-bottom: 3px;
+        }
+
+        .special-button:active {
+
+            transform: scale(0.95);
+        }
+
+
+        /* =====================================================
+   MOMENT BUTTON
+===================================================== */
+
+        .moment-button {
+
+            width: 100%;
+
+            height: 54px;
+
+            margin-top: 9px;
+
+            border: none;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(255, 45, 117, 0.22),
+                    rgba(168, 85, 247, 0.22));
+
+            border:
+                1px solid rgba(255, 255, 255, 0.10);
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .moment-button:active {
+
+            transform: scale(0.97);
+        }
+
+
+        /* =====================================================
+   KISS COUNTER
+===================================================== */
+
+        .kiss-counter {
+
+            margin-top: 8px;
+
+            min-height: 38px;
+
+            padding: 8px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255, 255, 255, 0.045);
+
+            color: #ffb5ce;
+
+            font-size: 13px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        /* =====================================================
+   RESPONSE
+===================================================== */
+
+        .response-area {
+
+            margin-top: 7px;
+
+            min-height: 0;
+        }
+
+        .response-button {
+
+            width: 100%;
+
+            min-height: 44px;
+
+            padding: 10px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(135deg,
+                    #ff2d75,
+                    #a855f7);
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 650;
+
+            cursor: pointer;
+
+            animation:
+                responseAppear 0.3s ease-out;
+        }
+
+        @keyframes responseAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(8px) scale(0.96);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0) scale(1);
+            }
+        }
+
+
+        /* =====================================================
+   MESSAGE
+===================================================== */
+
+        #message {
+
+            margin-top: 7px;
+
+            min-height: 40px;
+
+            padding: 7px 12px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255, 255, 255, 0.045);
+
+            font-size: 13px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+        .private {
+
+            margin-top: 5px;
+
+            color: #727280;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+   CAMERA
+===================================================== */
+
+        #cameraModal {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 1000;
+
+            background: #050507;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                env(safe-area-inset-top) 12px env(safe-area-inset-bottom) 12px;
+        }
+
+        .camera-box {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            height: 100%;
+
+            max-height: 820px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            position: relative;
+        }
+
+        .camera-header {
+
+            height: 58px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 6px;
+
+            flex-shrink: 0;
+        }
+
+        .camera-title {
+
+            font-size: 18px;
+
+            font-weight: 600;
+        }
+
+        .camera-close {
+
+            width: 42px;
+            height: 42px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.10);
+
+            color: white;
+
+            font-size: 21px;
+
+            cursor: pointer;
+        }
+
+        .camera-preview {
+
+            position: relative;
+
+            width: 100%;
+
+            flex: 1;
+
+            min-height: 0;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            background: #111;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        #cameraVideo {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .camera-label {
+
+            position: absolute;
+
+            top: 14px;
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(0, 0, 0, 0.45);
+
+            backdrop-filter: blur(8px);
+
+            font-size: 12px;
+
+            color: #ddd;
+        }
+
+        .camera-controls {
+
+            height: 105px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-around;
+
+            flex-shrink: 0;
+        }
+
+        .camera-control {
+
+            width: 54px;
+            height: 54px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.10);
+
+            color: white;
+
+            font-size: 22px;
+
+            cursor: pointer;
+        }
+
+        .camera-control-text {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 4px;
+
+            color: #ddd;
+
+            font-size: 11px;
+        }
+
+        .capture-button {
+
+            width: 72px;
+            height: 72px;
+
+            border-radius: 50%;
+
+            border:
+                5px solid rgba(255, 255, 255, 0.85);
+
+            background: #ffffff;
+
+            box-shadow:
+                0 0 0 5px rgba(255, 255, 255, 0.15);
+
+            cursor: pointer;
+        }
+
+        .capture-button:active {
+
+            transform: scale(0.91);
+        }
+
+        .camera-error {
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            width: 82%;
+
+            padding: 20px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(0, 0, 0, 0.70);
+
+            backdrop-filter: blur(10px);
+
+            text-align: center;
+
+            display: none;
+        }
+
+        .camera-error-title {
+
+            font-size: 17px;
+
+            font-weight: 600;
+
+            margin-bottom: 8px;
+        }
+
+        .camera-error-text {
+
+            color: #bbb;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+   PHOTO PREVIEW
+===================================================== */
+
+        #photoPreviewScreen {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 1100;
+
+            background: #050507;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                env(safe-area-inset-top) 14px env(safe-area-inset-bottom) 14px;
+        }
+
+        .photo-preview-box {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+        }
+
+        .photo-preview-header {
+
+            height: 58px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+        .photo-preview-title {
+
+            font-size: 18px;
+
+            font-weight: 600;
+        }
+
+        .photo-preview-image-area {
+
+            flex: 1;
+
+            min-height: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            border-radius: 25px;
+
+            background: #111;
+        }
+
+        #capturedPhoto {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            display: block;
+        }
+
+        .photo-preview-controls {
+
+            height: 95px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+        }
+
+        .photo-preview-button {
+
+            height: 52px;
+
+            padding: 0 20px;
+
+            border: none;
+
+            border-radius: 16px;
+
+            color: white;
+
+            background:
+                rgba(255, 255, 255, 0.10);
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .photo-send-button {
+
+            background:
+                linear-gradient(135deg,
+                    #ff2d75,
+                    #a855f7);
+        }
+
+
+        /* =====================================================
+   COUPLE QUESTIONS MODAL
+===================================================== */
+
+        #coupleQuestionModal {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 2000;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 18px;
+
+            background:
+                rgba(0, 0, 0, 0.72);
+
+            backdrop-filter: blur(14px);
+        }
+
+        .couple-question-box {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            max-height: 92dvh;
+
+            overflow-y: auto;
+
+            padding: 24px 20px;
+
+            border-radius: 27px;
+
+            background:
+                linear-gradient(145deg,
+                    rgba(45, 20, 48, 0.97),
+                    rgba(20, 18, 45, 0.97));
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            box-shadow:
+                0 30px 100px rgba(0, 0, 0, 0.55);
+
+            text-align: center;
+
+            scrollbar-width: none;
+        }
+
+        .couple-question-box::-webkit-scrollbar {
+
+            display: none;
+        }
+
+        .couple-question-title {
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            margin-bottom: 6px;
+        }
+
+        .couple-question-subtitle {
+
+            color: #aaaaba;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            margin-bottom: 22px;
+        }
+
+        #coupleQuestionStartArea {
+
+            width: 100%;
+        }
+
+        .couple-question-start {
+
+            width: 100%;
+
+            height: 55px;
+
+            border: none;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(135deg,
+                    #ff2d75,
+                    #a855f7);
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .couple-question-start:active {
+
+            transform: scale(0.97);
+        }
+
+        .couple-question-card {
+
+            padding: 20px 15px;
+
+            border-radius: 21px;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.09);
+
+            margin-bottom: 15px;
+        }
+
+        .couple-question-number {
+
+            color: #ff9fc2;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+        }
+
+        #coupleQuestionText {
+
+            font-size: 22px;
+
+            line-height: 1.35;
+
+            font-weight: 700;
+        }
+
+        .couple-answer-buttons {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+
+            margin-top: 15px;
+        }
+
+        .couple-answer-button {
+
+            height: 60px;
+
+            border-radius: 17px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            background:
+                rgba(255, 255, 255, 0.065);
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.15s,
+                opacity 0.15s;
+        }
+
+        .couple-answer-button:active {
+
+            transform: scale(0.95);
+        }
+
+        .couple-answer-button:disabled {
+
+            cursor: default;
+        }
+
+        #coupleQuestionStatus {
+
+            min-height: 22px;
+
+            margin-top: 15px;
+
+            color: #aaaaba;
+
+            font-size: 13px;
+
+            line-height: 1.4;
+        }
+
+        #coupleQuestionReveal {
+
+            display: none;
+
+            margin-top: 16px;
+
+            text-align: left;
+        }
+
+        .reveal-title {
+
+            text-align: center;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+        }
+
+        .reveal-answer {
+
+            padding: 13px 14px;
+
+            margin-top: 8px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .reveal-label {
+
+            color: #9999aa;
+
+            font-size: 11px;
+
+            margin-bottom: 4px;
+        }
+
+        .reveal-value {
+
+            font-size: 15px;
+
+            font-weight: 700;
+        }
+
+        #coupleQuestionNextButton {
+
+            display: none;
+
+            width: 100%;
+
+            height: 52px;
+
+            margin-top: 15px;
+
+            border: none;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(135deg,
+                    #ff2d75,
+                    #a855f7);
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        #coupleQuestionCloseButton {
+
+            width: 100%;
+
+            height: 48px;
+
+            margin-top: 10px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255, 255, 255, 0.07);
+
+            color: #ddd;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+   FINAL RESULT
+===================================================== */
+
+        #coupleQuestionFinalResult {
+
+            display: none;
+
+            margin-top: 5px;
+        }
+
+        .final-result-title {
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            margin-bottom: 6px;
+        }
+
+        .final-result-subtitle {
+
+            color: #aaaaba;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            margin-bottom: 18px;
+        }
+
+        .final-score {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 9px;
+
+            margin-bottom: 18px;
+        }
+
+        .score-card {
+
+            padding: 15px 10px;
+
+            border-radius: 17px;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .score-number {
+
+            font-size: 27px;
+
+            font-weight: 800;
+        }
+
+        .score-label {
+
+            color: #9999aa;
+
+            font-size: 11px;
+
+            margin-top: 3px;
+        }
+
+        .final-question-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+
+            text-align: left;
+        }
+
+        .final-question-item {
+
+            padding: 13px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(255, 255, 255, 0.045);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .final-question-heading {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            line-height: 1.4;
+
+            margin-bottom: 8px;
+        }
+
+        .final-answer-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 4px;
+
+            font-size: 12px;
+        }
+
+        .final-answer-name {
+
+            color: #9999aa;
+        }
+
+        .final-answer-value {
+
+            font-weight: 700;
+
+            text-align: right;
+        }
+
+        .final-match {
+
+            margin-top: 8px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-align: center;
+
+            padding: 6px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+        }
+
+        #coupleQuestionPlayAgainButton {
+
+            width: 100%;
+
+            height: 54px;
+
+            margin-top: 16px;
+
+            border: none;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(135deg,
+                    #ff2d75,
+                    #a855f7);
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 750;
+
+            cursor: pointer;
+        }
+
+        #coupleQuestionPlayAgainButton:active {
+
+            transform: scale(0.97);
+        }
+
+
+        /* =====================================================
+   HEART / EMOJI ANIMATION
+===================================================== */
+
+        .floating-heart {
+
+            position: fixed;
+
+            pointer-events: none;
+
+            z-index: 3000;
+
+            font-size: 24px;
+
+            animation:
+                floatHeart 1.8s ease-out forwards;
+        }
+
+        @keyframes floatHeart {
+
+            0% {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0) scale(0.7);
+            }
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    translateY(-180px) scale(1.5);
+            }
+        }
+
+        .special-emoji {
+
+            position: fixed;
+
+            left: 50%;
+
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            z-index: 3000;
+
+            pointer-events: none;
+
+            font-size: 80px;
+
+            animation:
+                specialEmoji 1.2s ease-out forwards;
+        }
+
+        @keyframes specialEmoji {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+                    translate(-50%, -50%) scale(0.3);
+            }
+
+            25% {
+
+                opacity: 1;
+
+                transform:
+                    translate(-50%, -50%) scale(1.2);
+            }
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    translate(-50%, -50%) scale(1.8);
+            }
+        }
+
+        .heart-rain {
+
+            position: fixed;
+
+            top: -40px;
+
+            z-index: 2999;
+
+            pointer-events: none;
+
+            animation:
+                heartRain 3s linear forwards;
+        }
+
+        @keyframes heartRain {
+
+            0% {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0) rotate(0deg);
+            }
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    translateY(110vh) rotate(360deg);
+            }
+        }
+
+
+        /* =====================================================
+   MOBILE
+===================================================== */
+
+        @media (max-height: 700px) {
+
+            .logo {
+
+                width: 52px;
+                height: 52px;
+
+                font-size: 27px;
+            }
+
+            h1 {
+
+                font-size: 26px;
+            }
+
+            .love-action {
+
+                height: 72px;
+            }
+
+            .love-action span {
+
+                font-size: 26px;
+
+                line-height: 27px;
+            }
+
+            .special-button {
+
+                height: 57px;
+            }
+
+        }
+
+
+        /* =====================================================
+   HIDDEN CANVAS
+===================================================== */
+
+        #photoCanvas {
+
+            display: none;
+        }
+
+        /* =====================================================
+   💬 CHAT UI — MOBILE KEYBOARD FIX
+===================================================== */
+
+        .chat-floating-button {
+            position: fixed;
+            right: 18px;
+            bottom: 20px;
+
+            width: 58px;
+            height: 58px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: linear-gradient(135deg, #ff2d75, #a855f7);
+
+            color: white;
+            font-size: 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 1400;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+            cursor: pointer;
+
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .chat-floating-button:active {
+            transform: scale(0.90);
+        }
+
+
+        /* =====================================================
+   CHAT MODAL
+===================================================== */
+
+        .chat-modal {
+            display: none;
+
+            position: fixed;
+            inset: 0;
+
+            z-index: 2500;
+
+            padding: 12px;
+
+            background: rgba(0, 0, 0, 0.60);
+
+            backdrop-filter: blur(10px);
+
+            align-items: flex-end;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================================
+   CHAT BOX
+===================================================== */
+
+        .chat-box {
+            width: 100%;
+            max-width: 430px;
+
+            height: min(640px,
+                    calc(var(--chat-viewport-height, 100dvh) - 24px));
+
+            max-height: calc(var(--chat-viewport-height, 100dvh) - 24px);
+
+            display: flex;
+            flex-direction: column;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(145deg,
+                    rgba(31, 20, 43, 0.98),
+                    rgba(18, 18, 35, 0.98));
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.60);
+
+            overflow: hidden;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =====================================================
+   HEADER
+===================================================== */
+
+        .chat-header {
+            height: 60px;
+            min-height: 60px;
+
+            padding: 0 14px 0 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            flex-shrink: 0;
+        }
+
+        .chat-header>div {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .chat-close-button {
+            width: 38px;
+            height: 38px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            color: white;
+            font-size: 18px;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+   MESSAGES
+===================================================== */
+
+        .chat-messages {
+            flex: 1;
+
+            min-height: 0;
+
+            padding: 16px 13px;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 9px;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            -webkit-overflow-scrolling: touch;
+
+            overscroll-behavior: contain;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.20);
+            border-radius: 10px;
+        }
+
+
+        /* =====================================================
+   MESSAGE BUBBLES
+===================================================== */
+
+        .chat-message {
+            max-width: 78%;
+
+            padding: 10px 13px;
+
+            border-radius: 17px;
+
+            font-size: 14px;
+            line-height: 1.4;
+
+            word-break: break-word;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 3px;
+        }
+
+        .chat-message.mine {
+            align-self: flex-end;
+
+            background:
+                linear-gradient(135deg,
+                    #ff2d75,
+                    #a855f7);
+
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-message.theirs {
+            align-self: flex-start;
+
+            background:
+                rgba(255, 255, 255, 0.09);
+
+            border-bottom-left-radius: 5px;
+        }
+
+        .chat-message-time {
+            font-size: 9px;
+
+            opacity: 0.65;
+
+            align-self: flex-end;
+        }
+
+
+        /* =====================================================
+        INPUT
+        ===================================================== */
+
+        .chat-input-area {
+            min-height: 70px;
+
+            padding: 10px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            border-top:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            flex-shrink: 0;
+
+            background:
+                rgba(18, 18, 35, 0.98);
+        }
+
+        #chatInput {
+            flex: 1;
+
+            min-width: 0;
+
+            height: 52px;
+
+            padding: 0 16px;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius: 18px;
+
+            outline: none;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            color: white;
+
+            font-size: 15px;
+        }
+
+        #chatInput::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        #chatSendButton {
+            width: 52px;
+            height: 52px;
+
+            flex-shrink: 0;
+
+            border: none;
+            border-radius: 17px;
+
+            background:
+                linear-gradient(135deg,
+                    #ff2d75,
+                    #a855f7);
+
+            color: white;
+
+            font-size: 25px;
+        }
+
+        #chatSendButton:active {
+            transform: scale(0.95);
+        }
+
+
+        /* =====================================================
+   MOBILE
+===================================================== */
+
+        @media (max-width: 500px) {
+
+            .chat-modal {
+                padding: 8px;
+            }
+
+            .chat-box {
+                height: calc(var(--chat-viewport-height, 100dvh) - 16px);
+
+                max-height: calc(var(--chat-viewport-height, 100dvh) - 16px);
+
+                border-radius: 24px;
+            }
+
+            .chat-input-area {
+                padding-bottom:
+                    max(10px,
+                        env(safe-area-inset-bottom));
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="app">
+
+
+        <!-- =================================================
+         HEADER
+    ================================================= -->
+
+        <div class="logo">
+            ❤️
+        </div>
+
+        <h1>
+            Love Connect
+        </h1>
+
+        <div class="tagline">
+            Just for the two of us ❤️
+        </div>
+
+
+        <!-- =================================================
+         DATE SCREEN
+    ================================================= -->
+
+        <div id="dateScreen">
+
+            <div class="question">
+                When did our story begin? ❤️
+            </div>
+
+            <div class="hint">
+                Enter our special date
+            </div>
+
+            <input id="dateInput" type="text" inputmode="numeric" maxlength="10" placeholder="DD/MM/YYYY"
+                autocomplete="off">
+
+            <button id="continueButton">
+                Continue ❤️
+            </button>
+
+            <div id="status"></div>
+
+        </div>
+
+
+        <!-- =================================================
+         GENDER SCREEN
+    ================================================= -->
+
+        <div id="genderScreen">
+
+            <div class="gender-question">
+                Tell me about you ❤️
+            </div>
+
+            <div class="gender-hint">
+                This helps personalize our little world
+            </div>
+
+            <div class="gender-options">
+
+                <button class="gender-option" data-gender="boy">
+
+                    <span>
+                        👦
+                    </span>
+
+                    Boy
+
+                </button>
+
+
+                <button class="gender-option" data-gender="girl">
+
+                    <span>
+                        👧
+                    </span>
+
+                    Girl
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+         LOVE SCREEN
+    ================================================= -->
+
+        <div id="loveScreen">
+
+            <div class="connected">
+                🟢 Connected to your little world ❤️
+            </div>
+
+
+            <!-- NORMAL LOVE ACTIONS -->
+
+            <div class="love-actions">
+
+                <button class="love-action" data-type="miss" data-message="I miss you ❤️">
+
+                    <span>
+                        ❤️
+                    </span>
+
+                    I miss you
+
+                </button>
+
+
+                <button class="love-action" data-type="thinking" data-message="Thinking about you 🥺❤️">
+
+                    <span>
+                        🥺
+                    </span>
+
+                    Thinking of you
+
+                </button>
+
+
+                <button class="love-action" data-type="night" data-message="Good night, my love 🌙❤️">
+
+                    <span>
+                        🌙
+                    </span>
+
+                    Good Night
+
+                </button>
+
+
+                <button class="love-action" data-type="love" data-message="Love you more every day 💕">
+
+                    <span>
+                        💕
+                    </span>
+
+                    Love You
+
+                </button>
+
+            </div>
+
+
+            <!-- SPECIAL ACTIONS -->
+
+            <div class="special-actions">
+
+                <button class="special-button" id="surpriseButton">
+
+                    <span>
+                        🎲
+                    </span>
+
+                    Surprise Me ❤️
+
+                </button>
+
+
+                <button class="special-button" id="angryButton">
+
+                    <span>
+                        😤
+                    </span>
+
+                    I'm Angry
+
+                </button>
+
+
+                <button class="special-button" id="kissButton">
+
+                    <span>
+                        💋
+                    </span>
+
+                    Send Kiss
+
+                </button>
+
+
+                <button class="special-button" id="hugButton">
+
+                    <span>
+                        🫂
+                    </span>
+
+                    Virtual Hug
+
+                </button>
+
+            </div>
+
+
+            <!-- LOOK AT ME -->
+
+            <button class="moment-button" id="lookAtMeButton">
+
+                👀 Look at Me ❤️
+
+            </button>
+
+
+            <!-- COUPLE QUESTIONS -->
+
+            <button class="moment-button" id="coupleQuestionButton">
+
+                🎯 Couple Questions ❤️
+
+            </button>
+
+            <!-- =====================================================
+            FLOATING CHAT BUTTON
+            ===================================================== -->
+
+            <button id="chatButton" class="chat-floating-button" type="button" aria-label="Open chat">
+                💬
+            </button>
+
+
+            <!-- SEND MOMENT -->
+
+            <button class="moment-button" id="momentButton">
+
+                📸 Send a Moment
+
+            </button>
+
+
+            <!-- KISS COUNTER -->
+
+            <div class="kiss-counter">
+
+                💋 Kisses exchanged:
+                <strong id="kissCount">0</strong>
+
+            </div>
+
+
+            <!-- RESPONSE -->
+
+            <div class="response-area" id="responseArea"></div>
+
+
+            <!-- MESSAGE -->
+
+            <div id="message">
+
+                ✨ Welcome to our little world ❤️
+
+            </div>
+
+
+            <div class="private">
+
+                🔒 Just between you two
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     COUPLE QUESTIONS MODAL
+===================================================== -->
+
+    <div id="coupleQuestionModal">
+
+        <div class="couple-question-box">
+
+            <div class="couple-question-title">
+                🎯 Couple Questions
+            </div>
+
+            <div class="couple-question-subtitle" id="coupleQuestionSubtitle">
+                Answer secretly. Your answers reveal together ❤️
+            </div>
+
+
+            <!-- START -->
+
+            <div id="coupleQuestionStartArea">
+
+                <button class="couple-question-start" id="coupleQuestionStartButton">
+
+                    Start a Question ❤️
+
+                </button>
+
+            </div>
+
+
+            <!-- GAME -->
+
+            <div id="coupleQuestionGameArea" style="display:none;">
+
+                <div class="couple-question-card">
+
+                    <div class="couple-question-number" id="coupleQuestionNumber">
+                        Question 1 of 10
+                    </div>
+
+                    <div id="coupleQuestionText"></div>
+
+                </div>
+
+
+                <div class="couple-answer-buttons">
+
+                    <button class="couple-answer-button" data-answer="Me ❤️">
+                        Me ❤️
+                    </button>
+
+
+                    <button class="couple-answer-button" data-answer="You 😘">
+                        You 😘
+                    </button>
+
+                </div>
+
+
+                <div id="coupleQuestionStatus"></div>
+
+
+                <!-- REVEAL -->
+
+                <div id="coupleQuestionReveal">
+
+                    <div class="reveal-title">
+                        💥 Both Answers Revealed!
+                    </div>
+
+
+                    <div class="reveal-answer">
+
+                        <div class="reveal-label" id="myAnswerLabel">
+                            Your answer
+                        </div>
+
+                        <div class="reveal-value" id="myAnswerValue">
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="reveal-answer">
+
+                        <div class="reveal-label" id="partnerAnswerLabel">
+                            Partner's answer
+                        </div>
+
+                        <div class="reveal-value" id="partnerAnswerValue">
+                            —
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button id="coupleQuestionNextButton">
+                    Next Question 💕
+                </button>
+
+            </div>
+
+
+            <!-- FINAL RESULT -->
+
+            <div id="coupleQuestionFinalResult">
+
+                <div class="final-result-title">
+                    🎉 Round Complete! ❤️
+                </div>
+
+                <div class="final-result-subtitle">
+                    You completed all 10 questions together 🥰
+                </div>
+
+
+                <div class="final-score">
+
+                    <div class="score-card">
+
+                        <div class="score-number" id="sameAnswerCount">
+                            0
+                        </div>
+
+                        <div class="score-label">
+                            ❤️ Same Answers
+                        </div>
+
+                    </div>
+
+
+                    <div class="score-card">
+
+                        <div class="score-number" id="differentAnswerCount">
+                            0
+                        </div>
+
+                        <div class="score-label">
+                            💭 Different Answers
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="final-question-list" id="finalQuestionList"></div>
+
+
+                <button id="coupleQuestionPlayAgainButton">
+                    ❤️ Play Again
+                </button>
+
+            </div>
+
+
+            <!-- CLOSE -->
+
+            <button id="coupleQuestionCloseButton">
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     CAMERA MODAL
+===================================================== -->
+
+    <div id="cameraModal">
+
+        <div class="camera-box">
+
+            <div class="camera-header">
+
+                <div class="camera-title">
+                    📸 Send a Moment
+                </div>
+
+                <button class="camera-close" id="cameraCloseButton">
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="camera-preview">
+
+                <video id="cameraVideo" autoplay playsinline muted></video>
+
+
+                <div class="camera-label">
+                    <span id="cameraLabel">
+                        Front Camera
+                    </span>
+                </div>
+
+
+                <div class="camera-error" id="cameraError">
+
+                    <div class="camera-error-title">
+                        Camera unavailable
+                    </div>
+
+                    <div class="camera-error-text" id="cameraErrorText">
+                        Could not start camera.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="camera-controls">
+
+                <div class="camera-control-text">
+
+                    <button class="camera-control" id="cameraModeButton">
+                        🤳
+                    </button>
+
+                    <span id="cameraModeText">
+                        Front
+                    </span>
+
+                </div>
+
+
+                <button class="capture-button" id="captureButton">
+                </button>
+
+
+                <div class="camera-control-text">
+
+                    <button class="camera-control" id="cameraCloseBottomButton">
+                        ✕
+                    </button>
+
+                    <span>
+                        Close
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     PHOTO PREVIEW
+===================================================== -->
+
+    <div id="photoPreviewScreen">
+
+        <div class="photo-preview-box">
+
+            <div class="photo-preview-header">
+
+                <div class="photo-preview-title">
+                    📸 Your Moment
+                </div>
+
+                <button class="camera-close" id="photoPreviewCloseButton">
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="photo-preview-image-area">
+
+                <img id="capturedPhoto" alt="Captured moment">
+
+            </div>
+
+
+            <div class="photo-preview-controls">
+
+                <button class="photo-preview-button" id="retakeButton">
+                    ↩ Retake
+                </button>
+
+
+                <button class="photo-preview-button photo-send-button" id="sendPhotoButton">
+                    ❤️ Send
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+     💬 CHAT MODAL
+===================================================== -->
+
+    <div id="chatModal" class="chat-modal">
+
+        <div class="chat-box">
+
+            <div class="chat-header">
+
+                <div>
+                    💬 Our Little Chat ❤️
+                </div>
+
+                <button id="chatCloseButton" class="chat-close-button" type="button">
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div id="chatMessages" class="chat-messages">
+            </div>
+
+
+            <div class="chat-input-area">
+
+                <input id="chatInput" type="text" maxlength="1000" placeholder="Type something... ❤️"
+                    autocomplete="off" />
+
+                <button id="chatSendButton" type="button">
+                    ➤
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <canvas id="photoCanvas"></canvas>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+
+        /* =====================================================
+           SOCKET
+        ===================================================== */
+
+        const socket = io();
+
+
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
+
+        const dateScreen =
+            document.getElementById(
+                "dateScreen"
+            );
+
+        const genderScreen =
+            document.getElementById(
+                "genderScreen"
+            );
+
+        const loveScreen =
+            document.getElementById(
+                "loveScreen"
+            );
+
+        const dateInput =
+            document.getElementById(
+                "dateInput"
+            );
+
+        const continueButton =
+            document.getElementById(
+                "continueButton"
+            );
+
+        const status =
+            document.getElementById(
+                "status"
+            );
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+        const responseArea =
+            document.getElementById(
+                "responseArea"
+            );
+
+        const kissCountElement =
+            document.getElementById(
+                "kissCount"
+            );
+
+        const surpriseButton =
+            document.getElementById(
+                "surpriseButton"
+            );
+
+        const angryButton =
+            document.getElementById(
+                "angryButton"
+            );
+
+        const kissButton =
+            document.getElementById(
+                "kissButton"
+            );
+
+        const hugButton =
+            document.getElementById(
+                "hugButton"
+            );
+
+        const lookAtMeButton =
+            document.getElementById(
+                "lookAtMeButton"
+            );
+
+        const momentButton =
+            document.getElementById(
+                "momentButton"
+            );
+
+        const genderOptions =
+            document.querySelectorAll(
+                ".gender-option"
+            );
+
+
+        /* =====================================================
+           COUPLE QUESTION ELEMENTS
+        ===================================================== */
+
+        const coupleQuestionButton =
+            document.getElementById(
+                "coupleQuestionButton"
+            );
+
+        const coupleQuestionModal =
+            document.getElementById(
+                "coupleQuestionModal"
+            );
+
+        const coupleQuestionCloseButton =
+            document.getElementById(
+                "coupleQuestionCloseButton"
+            );
+
+        const coupleQuestionStartButton =
+            document.getElementById(
+                "coupleQuestionStartButton"
+            );
+
+        const coupleQuestionStartArea =
+            document.getElementById(
+                "coupleQuestionStartArea"
+            );
+
+        const coupleQuestionGameArea =
+            document.getElementById(
+                "coupleQuestionGameArea"
+            );
+
+        const coupleQuestionFinalResult =
+            document.getElementById(
+                "coupleQuestionFinalResult"
+            );
+
+        const coupleQuestionText =
+            document.getElementById(
+                "coupleQuestionText"
+            );
+
+        const coupleQuestionNumber =
+            document.getElementById(
+                "coupleQuestionNumber"
+            );
+
+        const coupleQuestionStatus =
+            document.getElementById(
+                "coupleQuestionStatus"
+            );
+
+        const coupleAnswerButtons =
+            document.querySelectorAll(
+                ".couple-answer-button"
+            );
+
+        const coupleQuestionReveal =
+            document.getElementById(
+                "coupleQuestionReveal"
+            );
+
+        const myAnswerLabel =
+            document.getElementById(
+                "myAnswerLabel"
+            );
+
+        const partnerAnswerLabel =
+            document.getElementById(
+                "partnerAnswerLabel"
+            );
+
+        const myAnswerValue =
+            document.getElementById(
+                "myAnswerValue"
+            );
+
+        const partnerAnswerValue =
+            document.getElementById(
+                "partnerAnswerValue"
+            );
+
+        const coupleQuestionNextButton =
+            document.getElementById(
+                "coupleQuestionNextButton"
+            );
+
+        const sameAnswerCount =
+            document.getElementById(
+                "sameAnswerCount"
+            );
+
+        const differentAnswerCount =
+            document.getElementById(
+                "differentAnswerCount"
+            );
+
+        const finalQuestionList =
+            document.getElementById(
+                "finalQuestionList"
+            );
+
+        const coupleQuestionPlayAgainButton =
+            document.getElementById(
+                "coupleQuestionPlayAgainButton"
+            );
+
+
+        /* =====================================================
+           CAMERA ELEMENTS
+        ===================================================== */
+
+        const cameraModal =
+            document.getElementById(
+                "cameraModal"
+            );
+
+        const cameraVideo =
+            document.getElementById(
+                "cameraVideo"
+            );
+
+        const cameraCloseButton =
+            document.getElementById(
+                "cameraCloseButton"
+            );
+
+        const cameraCloseBottomButton =
+            document.getElementById(
+                "cameraCloseBottomButton"
+            );
+
+        const cameraModeButton =
+            document.getElementById(
+                "cameraModeButton"
+            );
+
+        const cameraModeText =
+            document.getElementById(
+                "cameraModeText"
+            );
+
+        const cameraLabel =
+            document.getElementById(
+                "cameraLabel"
+            );
+
+        const captureButton =
+            document.getElementById(
+                "captureButton"
+            );
+
+        const cameraError =
+            document.getElementById(
+                "cameraError"
+            );
+
+        const cameraErrorText =
+            document.getElementById(
+                "cameraErrorText"
+            );
+
+        const photoPreviewScreen =
+            document.getElementById(
+                "photoPreviewScreen"
+            );
+
+        const capturedPhoto =
+            document.getElementById(
+                "capturedPhoto"
+            );
+
+        const photoPreviewCloseButton =
+            document.getElementById(
+                "photoPreviewCloseButton"
+            );
+
+        const retakeButton =
+            document.getElementById(
+                "retakeButton"
+            );
+
+        const sendPhotoButton =
+            document.getElementById(
+                "sendPhotoButton"
+            );
+
+        const photoCanvas =
+            document.getElementById(
+                "photoCanvas"
+            );
+
+
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+
+        let selectedGender = null;
+
+        let angrySenderId = null;
+
+        let forgivenReceiverId = null;
+
+
+        /* =====================================================
+           COUPLE QUESTION VARIABLES
+        ===================================================== */
+
+        let currentCoupleQuestion = null;
+
+        let myCoupleAnswer = null;
+
+        let coupleQuestionAnswered = false;
+
+        let coupleQuestionHistory = [];
+
+
+        /* =====================================================
+           CAMERA VARIABLES
+        ===================================================== */
+
+        let cameraStream = null;
+
+        let currentFacingMode =
+            "user";
+
+        let capturedPhotoBlob = null;
+
+
+        /* =====================================================
+           DATE FORMAT
+        ===================================================== */
+
+        dateInput.addEventListener(
+            "input",
+            () => {
+
+                let value =
+                    dateInput.value
+                        .replace(/\D/g, "");
+
+
+                if (
+                    value.length > 2
+                ) {
+
+                    value =
+                        value.substring(
+                            0,
+                            2
+                        )
+                        +
+                        "/"
+                        +
+                        value.substring(
+                            2
+                        );
+
+                }
+
+
+                if (
+                    value.length > 5
+                ) {
+
+                    value =
+                        value.substring(
+                            0,
+                            5
+                        )
+                        +
+                        "/"
+                        +
+                        value.substring(
+                            5
+                        );
+
+                }
+
+
+                dateInput.value =
+                    value.substring(
+                        0,
+                        10
+                    );
+
+            }
+        );
+
+
+        /* =====================================================
+           CHECK DATE
+        ===================================================== */
+
+        continueButton.addEventListener(
+            "click",
+            () => {
+
+                const enteredDate =
+                    dateInput.value.trim();
+
+
+                if (
+                    enteredDate.length !==
+                    10
+                ) {
+
+                    status.innerText =
+                        "Please enter the complete date ❤️";
+
+                    return;
+
+                }
+
+
+                status.innerText =
+                    "Checking our special date...";
+
+
+                continueButton.disabled =
+                    true;
+
+
+                socket.emit(
+                    "check-date",
+                    enteredDate
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           DATE CORRECT
+        ===================================================== */
+
+        socket.on(
+            "date-correct",
+            () => {
+
+                dateScreen.style.display =
+                    "none";
+
+                genderScreen.style.display =
+                    "block";
+
+                status.innerText =
+                    "";
+
+            }
+        );
+
+
+        /* =====================================================
+           DATE WRONG
+        ===================================================== */
+
+        socket.on(
+            "date-wrong",
+            () => {
+
+                status.innerText =
+                    "Hmm... that's not our special date ❤️";
+
+                dateInput.value =
+                    "";
+
+                continueButton.disabled =
+                    false;
+
+                dateInput.focus();
+
+            }
+        );
+
+
+        /* =====================================================
+           GENDER SELECTION
+        ===================================================== */
+
+        genderOptions.forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const gender =
+                            button.dataset.gender;
+
+
+                        selectedGender =
+                            gender;
+
+
+                        socket.emit(
+                            "set-gender",
+                            gender
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           GENDER CONFIRMED
+        ===================================================== */
+
+        socket.on(
+            "gender-set",
+            (data) => {
+
+                selectedGender =
+                    data.gender;
+
+
+                genderScreen.style.display =
+                    "none";
+
+                loveScreen.style.display =
+                    "block";
+
+                message.innerText =
+                    "✨ Welcome to our little world ❤️";
+
+            }
+        );
+
+
+        /* =====================================================
+           NORMAL LOVE ACTIONS
+        ===================================================== */
+
+        document
+            .querySelectorAll(
+                ".love-action"
+            )
+            .forEach(
+                (button) => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            const type =
+                                button.dataset.type;
+
+                            const loveMessage =
+                                button.dataset.message;
+
+
+                            socket.emit(
+                                "send-love",
+                                {
+                                    type:
+                                        type,
+
+                                    message:
+                                        loveMessage
+                                }
+                            );
+
+
+                            message.innerText =
+                                loveMessage;
+
+
+                            createHeartBurst();
+
+                        }
+                    );
+
+                }
+            );
+
+
+        /* =====================================================
+           RECEIVE LOVE
+        ===================================================== */
+
+        socket.on(
+            "receive-love",
+            (data) => {
+
+                if (!data) {
+                    return;
+                }
+
+
+                message.innerText =
+                    data.message ||
+                    "❤️ Thinking of you";
+
+
+                createHeartBurst();
+
+                createHeartRain();
+
+            }
+        );
+
+
+        /* =====================================================
+           SURPRISE LOVE
+        ===================================================== */
+
+        surpriseButton.addEventListener(
+            "click",
+            () => {
+
+                socket.emit(
+                    "surprise-love"
+                );
+
+
+                message.innerText =
+                    "🎲 Surprise sent ❤️";
+
+
+                createSpecialEmoji(
+                    "🎲",
+                    "surprise"
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           RECEIVE SURPRISE
+        ===================================================== */
+
+        socket.on(
+            "receive-surprise",
+            (data) => {
+
+                if (!data) {
+                    return;
+                }
+
+
+                message.innerText =
+                    data.message;
+
+
+                createSpecialEmoji(
+                    "💌",
+                    "surprise"
+                );
+
+
+                createHeartRain();
+
+            }
+        );
+
+
+        /* =====================================================
+           ANGRY MODE
+        ===================================================== */
+
+        angryButton.addEventListener(
+            "click",
+            () => {
+
+                socket.emit(
+                    "angry-mode"
+                );
+
+
+                message.innerText =
+                    "😤 I'm Angry!";
+
+
+                createSpecialEmoji(
+                    "😤",
+                    "thinking"
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           RECEIVE ANGRY
+        ===================================================== */
+
+        socket.on(
+            "receive-angry",
+            (data) => {
+
+                angrySenderId =
+                    data.angrySenderId;
+
+
+                message.innerText =
+                    data.angryMessage
+                    ||
+                    "🚨 Someone is angry with you! 😤";
+
+
+                createSpecialEmoji(
+                    "😤",
+                    "thinking"
+                );
+
+
+                createHeartRain();
+
+
+                showSorryButton();
+
+            }
+        );
+
+
+        /* =====================================================
+           SORRY BUTTON
+        ===================================================== */
+
+        function showSorryButton() {
+
+            responseArea.innerHTML =
+                "";
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "response-button";
+
+
+            button.innerText =
+                "🥺 Sorry Baby ❤️";
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        !angrySenderId
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    socket.emit(
+                        "sorry-baby",
+                        angrySenderId
+                    );
+
+
+                    message.innerText =
+                        "🥺 Sorry Baby ❤️";
+
+
+                    responseArea.innerHTML =
+                        "";
+
+
+                    createHeartBurst();
+
+                    createHeartRain();
+
+                }
+            );
+
+
+            responseArea.appendChild(
+                button
+            );
+
+        }
+
+
+        /* =====================================================
+           RECEIVE SORRY
+        ===================================================== */
+
+        socket.on(
+            "receive-sorry",
+            (data) => {
+
+                forgivenReceiverId =
+                    data.forgivenReceiverId;
+
+
+                message.innerText =
+                    "🥺 Sorry Baby received ❤️";
+
+
+                createSpecialEmoji(
+                    "🥺",
+                    "thinking"
+                );
+
+
+                createHeartRain();
+
+
+                showForgivenButton();
+
+            }
+        );
+
+
+        /* =====================================================
+           FORGIVEN BUTTON
+        ===================================================== */
+
+        function showForgivenButton() {
+
+            responseArea.innerHTML =
+                "";
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "response-button";
+
+
+            button.innerText =
+                "🥺 Okay... forgiven ❤️";
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        !forgivenReceiverId
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    socket.emit(
+                        "send-forgiven",
+                        forgivenReceiverId
+                    );
+
+
+                    message.innerText =
+                        "🥺 Okay... forgiven ❤️";
+
+
+                    responseArea.innerHTML =
+                        "";
+
+
+                    forgivenReceiverId =
+                        null;
+
+
+                    createHeartBurst();
+
+                    createHeartRain();
+
+                }
+            );
+
+
+            responseArea.appendChild(
+                button
+            );
+
+        }
+
+
+        /* =====================================================
+           RECEIVE FORGIVEN
+        ===================================================== */
+
+        socket.on(
+            "receive-forgiven",
+            () => {
+
+                message.innerText =
+                    "🥺 Okay... forgiven ❤️";
+
+
+                createSpecialEmoji(
+                    "🥺",
+                    "thinking"
+                );
+
+
+                createHeartBurst();
+
+                createHeartRain();
+
+            }
+        );
+
+
+        /* =====================================================
+           SEND KISS
+        ===================================================== */
+
+        kissButton.addEventListener(
+            "click",
+            () => {
+
+                socket.emit(
+                    "send-kiss"
+                );
+
+
+                message.innerText =
+                    "💋 Kiss sent ❤️";
+
+
+                createSpecialEmoji(
+                    "💋",
+                    "kiss"
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           KISS COUNT
+        ===================================================== */
+
+        socket.on(
+            "kiss-count-update",
+            (count) => {
+
+                kissCountElement.innerText =
+                    count;
+
+            }
+        );
+
+
+        /* =====================================================
+           RECEIVE KISS
+        ===================================================== */
+
+        socket.on(
+            "receive-kiss",
+            () => {
+
+                message.innerText =
+                    "💋 You received a kiss ❤️";
+
+
+                createSpecialEmoji(
+                    "💋",
+                    "kiss"
+                );
+
+
+                createHeartRain();
+
+            }
+        );
+
+
+        /* =====================================================
+           VIRTUAL HUG
+        ===================================================== */
+
+        hugButton.addEventListener(
+            "click",
+            () => {
+
+                socket.emit(
+                    "virtual-hug"
+                );
+
+
+                message.innerText =
+                    "🫂 Hug sent ❤️";
+
+
+                createSpecialEmoji(
+                    "🫂",
+                    "hug"
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           RECEIVE HUG
+        ===================================================== */
+
+        socket.on(
+            "receive-hug",
+            () => {
+
+                message.innerText =
+                    "🫂 You received a warm hug ❤️";
+
+
+                createSpecialEmoji(
+                    "🫂",
+                    "hug"
+                );
+
+
+                createHeartRain();
+
+            }
+        );
+
+
+        /* =====================================================
+           LOOK AT ME
+        ===================================================== */
+
+        lookAtMeButton.addEventListener(
+            "click",
+            () => {
+
+                socket.emit(
+                    "look-at-me"
+                );
+
+
+                message.innerText =
+                    "👀 Attention sent ❤️";
+
+
+                createSpecialEmoji(
+                    "👀",
+                    "look"
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           RECEIVE LOOK AT ME
+        ===================================================== */
+
+        socket.on(
+            "receive-look-at-me",
+            (data) => {
+
+                let attentionMessage;
+
+
+                if (
+                    data &&
+                    data.senderGender ===
+                    "boy"
+                ) {
+
+                    attentionMessage =
+                        "👀 He wants you ❤️";
+
+                }
+                else if (
+                    data &&
+                    data.senderGender ===
+                    "girl"
+                ) {
+
+                    attentionMessage =
+                        "👀 She wants you ❤️";
+
+                }
+                else {
+
+                    attentionMessage =
+                        "👀 Someone wants your attention ❤️";
+
+                }
+
+
+                message.innerText =
+                    attentionMessage;
+
+
+                createSpecialEmoji(
+                    "👀",
+                    "look"
+                );
+
+
+                createHeartRain();
+
+            }
+        );
+
+        /* =====================================================
+   💬 CHAT
+===================================================== */
+
+        const chatButton =
+            document.getElementById(
+                "chatButton"
+            );
+
+        const chatModal =
+            document.getElementById(
+                "chatModal"
+            );
+
+        const chatCloseButton =
+            document.getElementById(
+                "chatCloseButton"
+            );
+
+        const chatMessages =
+            document.getElementById(
+                "chatMessages"
+            );
+
+        const chatInput =
+            document.getElementById(
+                "chatInput"
+            );
+
+        const chatSendButton =
+            document.getElementById(
+                "chatSendButton"
+            );
+
+        /* =====================================================
+   📱 MOBILE KEYBOARD VIEWPORT FIX
+===================================================== */
+
+        function updateChatViewportHeight() {
+
+            const height =
+                window.visualViewport
+                    ? window.visualViewport.height
+                    : window.innerHeight;
+
+            document.documentElement.style.setProperty(
+                "--chat-viewport-height",
+                `${height}px`
+            );
+        }
+
+        updateChatViewportHeight();
+
+        if (window.visualViewport) {
+
+            window.visualViewport.addEventListener(
+                "resize",
+                updateChatViewportHeight
+            );
+
+            window.visualViewport.addEventListener(
+                "scroll",
+                updateChatViewportHeight
+            );
+        }
+
+        window.addEventListener(
+            "resize",
+            updateChatViewportHeight
+        );
+
+
+        /* =====================================================
+           OPEN CHAT
+        ===================================================== */
+
+        chatButton.addEventListener(
+            "click",
+            () => {
+
+                updateChatViewportHeight();
+
+                chatModal.style.display =
+                    "flex";
+
+                setTimeout(
+                    () => {
+                        updateChatViewportHeight();
+                        chatInput.focus();
+                    },
+                    100
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           CLOSE CHAT
+        ===================================================== */
+
+        chatCloseButton.addEventListener(
+            "click",
+            () => {
+
+                chatModal.style.display =
+                    "none";
+
+            }
+        );
+
+
+        /* =====================================================
+           ADD CHAT MESSAGE
+        ===================================================== */
+
+        function addChatMessage(
+            message,
+            isMine,
+            timestamp
+        ) {
+
+            const messageElement =
+                document.createElement(
+                    "div"
+                );
+
+            messageElement.className =
+                "chat-message " +
+                (
+                    isMine
+                        ? "mine"
+                        : "theirs"
+                );
+
+
+            const textElement =
+                document.createElement(
+                    "div"
+                );
+
+            textElement.innerText =
+                message;
+
+
+            const timeElement =
+                document.createElement(
+                    "span"
+                );
+
+            timeElement.className =
+                "chat-message-time";
+
+
+            const date =
+                timestamp
+                    ? new Date(timestamp)
+                    : new Date();
+
+
+            timeElement.innerText =
+                date.toLocaleTimeString(
+                    [],
+                    {
+                        hour:
+                            "2-digit",
+
+                        minute:
+                            "2-digit"
+                    }
+                );
+
+
+            messageElement.appendChild(
+                textElement
+            );
+
+            messageElement.appendChild(
+                timeElement
+            );
+
+
+            chatMessages.appendChild(
+                messageElement
+            );
+
+
+            chatMessages.scrollTop =
+                chatMessages.scrollHeight;
+
+        }
+
+
+        /* =====================================================
+           SEND MESSAGE
+        ===================================================== */
+
+        function sendChatMessage() {
+
+            const message =
+                chatInput.value.trim();
+
+
+            if (!message) {
+
+                return;
+
+            }
+
+
+            const timestamp =
+                new Date().toISOString();
+
+
+            /*
+                Show immediately on sender.
+            */
+
+            addChatMessage(
+                message,
+                true,
+                timestamp
+            );
+
+
+            /*
+                Send to partner.
+            */
+
+            socket.emit(
+                "send-chat-message",
+                {
+                    message:
+                        message
+                }
+            );
+
+
+            chatInput.value =
+                "";
+
+
+            chatInput.focus();
+
+        }
+
+
+        /* =====================================================
+           SEND BUTTON
+        ===================================================== */
+
+        chatSendButton.addEventListener(
+            "click",
+            sendChatMessage
+        );
+
+
+        /* =====================================================
+           ENTER TO SEND
+        ===================================================== */
+
+        chatInput.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+                    event.preventDefault();
+
+                    sendChatMessage();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           RECEIVE MESSAGE
+        ===================================================== */
+
+        socket.on(
+            "receive-chat-message",
+            (data) => {
+
+                if (
+                    !data ||
+                    !data.message
+                ) {
+
+                    return;
+
+                }
+
+
+                addChatMessage(
+                    data.message,
+                    false,
+                    data.timestamp
+                );
+
+
+                /*
+                    If chat isn't open,
+                    show normal response notification.
+                */
+
+                if (
+                    chatModal.style.display !==
+                    "flex"
+                ) {
+
+                    message.innerText =
+                        "💬 You have a new message ❤️";
+
+                    createHeartBurst();
+
+                }
+
+            }
+        );
+        /* =====================================================
+           COUPLE QUESTIONS
+           PART 1 — OPEN / CLOSE / START
+        ===================================================== */
+
+        coupleQuestionButton.addEventListener(
+            "click",
+            () => {
+
+                coupleQuestionModal.style.display =
+                    "flex";
+
+
+                resetCoupleQuestionUI();
+
+            }
+        );
+
+
+        coupleQuestionCloseButton.addEventListener(
+            "click",
+            () => {
+
+                coupleQuestionModal.style.display =
+                    "none";
+
+            }
+        );
+
+
+        coupleQuestionStartButton.addEventListener(
+            "click",
+            () => {
+
+                console.log(
+                    "START BUTTON CLICKED"
+                );
+
+                coupleQuestionStatus.innerText =
+                    "Choosing a question for both of you... ❤️";
+
+
+                socket.emit(
+                    "start-couple-question"
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           COUPLE QUESTION ANSWER
+        ===================================================== */
+
+        coupleAnswerButtons.forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        if (
+                            !currentCoupleQuestion ||
+                            coupleQuestionAnswered
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        myCoupleAnswer =
+                            button.dataset.answer;
+
+
+                        coupleQuestionAnswered =
+                            true;
+
+
+                        coupleAnswerButtons.forEach(
+                            (answerButton) => {
+
+                                answerButton.disabled =
+                                    true;
+
+
+                                answerButton.style.opacity =
+                                    answerButton === button
+                                        ? "1"
+                                        : "0.45";
+
+                            }
+                        );
+
+
+                        coupleQuestionStatus.innerText =
+                            "Answer locked 🔒 Waiting for your partner...";
+
+
+                        socket.emit(
+                            "answer-couple-question",
+                            {
+                                roundId:
+                                    currentCoupleQuestion.roundId,
+
+                                answer:
+                                    myCoupleAnswer
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           COUPLE QUESTION NEXT
+        ===================================================== */
+
+        coupleQuestionNextButton.addEventListener(
+            "click",
+            () => {
+
+                /*
+                    Do NOT reset the UI here.
+        
+                    Server will either:
+                    1. send next question
+                    2. send final result
+                    3. send error
+        
+                    So UI changes only after server response.
+                */
+
+                coupleQuestionNextButton.disabled =
+                    true;
+
+
+                coupleQuestionStatus.innerText =
+                    "Choosing the next question... 💕";
+
+
+                socket.emit(
+                    "start-couple-question"
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           WAITING
+        ===================================================== */
+
+        socket.on(
+            "couple-question-waiting",
+            (data) => {
+
+                coupleQuestionStatus.innerText =
+                    data &&
+                        data.message
+                        ? data.message
+                        : "Waiting for both of you... ❤️";
+
+            }
+        );
+
+
+        /* =====================================================
+           NEW QUESTION
+        ===================================================== */
+
+        socket.on(
+            "couple-question",
+            (data) => {
+
+                if (!data) {
+                    return;
+                }
+
+
+                currentCoupleQuestion =
+                    data;
+
+
+                myCoupleAnswer =
+                    null;
+
+
+                coupleQuestionAnswered =
+                    false;
+
+
+                coupleQuestionStartArea.style.display =
+                    "none";
+
+
+                coupleQuestionGameArea.style.display =
+                    "block";
+
+
+                coupleQuestionFinalResult.style.display =
+                    "none";
+
+
+                coupleQuestionReveal.style.display =
+                    "none";
+
+
+                coupleQuestionNextButton.style.display =
+                    "none";
+
+
+                coupleQuestionNextButton.disabled =
+                    false;
+
+
+                coupleQuestionText.innerText =
+                    data.question;
+
+
+                coupleQuestionNumber.innerText =
+                    `Question ${data.questionNumber} of ${data.totalQuestions}`;
+
+
+                coupleQuestionStatus.innerText =
+                    "Choose your answer. Your partner won't see it yet 👀";
+
+
+                coupleAnswerButtons.forEach(
+                    (button) => {
+
+                        button.disabled =
+                            false;
+
+
+                        button.style.opacity =
+                            "1";
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           ANSWER RECEIVED
+        ===================================================== */
+
+        socket.on(
+            "couple-question-answer-received",
+            () => {
+
+                coupleQuestionStatus.innerText =
+                    "Your answer is locked 🔒 Waiting for your partner...";
+
+            }
+        );
+
+
+        /* =====================================================
+           QUESTION REVEAL
+        ===================================================== */
+
+        socket.on(
+            "couple-question-reveal",
+            (data) => {
+
+                if (!data) {
+                    return;
+                }
+
+
+                const answers =
+                    data.answers || {};
+
+
+                const myResult =
+                    answers[socket.id] ||
+                    myCoupleAnswer ||
+                    "—";
+
+
+                const partnerId =
+                    Object.keys(
+                        answers
+                    ).find(
+                        (id) =>
+                            id !== socket.id
+                    );
+
+
+                const partnerResult =
+                    partnerId
+                        ? answers[partnerId]
+                        : "—";
+
+
+                myAnswerLabel.innerText =
+                    "Your answer";
+
+
+                partnerAnswerLabel.innerText =
+                    "Partner's answer";
+
+
+                myAnswerValue.innerText =
+                    myResult;
+
+
+                partnerAnswerValue.innerText =
+                    partnerResult;
+
+
+                coupleQuestionReveal.style.display =
+                    "block";
+
+
+                coupleQuestionNextButton.style.display =
+                    "block";
+
+
+                coupleQuestionStatus.innerText =
+                    data.sameAnswer
+                        ? "💕 You both chose the same!"
+                        : "😂 You two chose differently!";
+
+
+                createHeartBurst();
+
+                createHeartRain();
+
+            }
+        );
+
+
+        /* =====================================================
+           QUESTION ERROR
+        ===================================================== */
+
+        socket.on(
+            "couple-question-error",
+            (data) => {
+
+                coupleQuestionStatus.innerText =
+                    data &&
+                        data.message
+                        ? data.message
+                        : "Something went wrong. Try again ❤️";
+
+            }
+        );
+
+
+        /* =====================================================
+           RESET QUESTION UI
+        ===================================================== */
+
+        function resetCoupleQuestionUI() {
+
+            currentCoupleQuestion =
+                null;
+
+
+            myCoupleAnswer =
+                null;
+
+
+            coupleQuestionAnswered =
+                false;
+
+
+            coupleQuestionStartArea.style.display =
+                "block";
+
+
+            coupleQuestionGameArea.style.display =
+                "none";
+
+
+            coupleQuestionFinalResult.style.display =
+                "none";
+
+
+            coupleQuestionReveal.style.display =
+                "none";
+
+
+            coupleQuestionNextButton.style.display =
+                "none";
+
+
+            coupleQuestionText.innerText =
+                "";
+
+
+            coupleQuestionNumber.innerText =
+                "Question 1 of 10";
+
+
+            coupleQuestionStatus.innerText =
+                "";
+
+
+            coupleAnswerButtons.forEach(
+                (button) => {
+
+                    button.disabled =
+                        false;
+
+                    button.style.opacity =
+                        "1";
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           RESET FOR NEXT QUESTION
+        ===================================================== */
+
+        function resetCoupleQuestionForNext() {
+
+            currentCoupleQuestion =
+                null;
+
+
+            myCoupleAnswer =
+                null;
+
+
+            coupleQuestionAnswered =
+                false;
+
+
+            coupleQuestionReveal.style.display =
+                "none";
+
+
+            coupleQuestionNextButton.style.display =
+                "none";
+
+
+            coupleAnswerButtons.forEach(
+                (button) => {
+
+                    button.disabled =
+                        false;
+
+                    button.style.opacity =
+                        "1";
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           FINAL RESULT
+        ===================================================== */
+
+        socket.on(
+            "couple-question-complete",
+            (data) => {
+
+                if (!data) {
+                    return;
+                }
+
+
+                coupleQuestionStartArea.style.display =
+                    "none";
+
+
+                coupleQuestionGameArea.style.display =
+                    "none";
+
+
+                coupleQuestionFinalResult.style.display =
+                    "block";
+
+
+                sameAnswerCount.innerText =
+                    data.sameCount || 0;
+
+
+                differentAnswerCount.innerText =
+                    data.differentCount || 0;
+
+
+                renderFinalResults(
+                    data.results || []
+                );
+
+
+                coupleQuestionStatus.innerText =
+                    "";
+
+
+                createHeartBurst();
+
+                createHeartRain();
+
+            }
+        );
+
+
+        /* =====================================================
+           RENDER FINAL RESULTS
+        ===================================================== */
+
+        function renderFinalResults(
+            results
+        ) {
+
+            finalQuestionList.innerHTML =
+                "";
+
+
+            results.forEach(
+                (result) => {
+
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    item.className =
+                        "final-question-item";
+
+
+                    const heading =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    heading.className =
+                        "final-question-heading";
+
+
+                    heading.innerText =
+                        `${result.questionNumber}. ${result.question}`;
+
+
+                    item.appendChild(
+                        heading
+                    );
+
+
+                    const answerEntries =
+                        Object.entries(
+                            result.answers || {}
+                        );
+
+
+                    const myAnswer =
+                        result.answers
+                            ? result.answers[
+                            socket.id
+                            ]
+                            : null;
+
+
+                    let partnerAnswer =
+                        null;
+
+
+                    answerEntries.forEach(
+                        ([id, answer]) => {
+
+                            if (
+                                id !== socket.id
+                            ) {
+
+                                partnerAnswer =
+                                    answer;
+
+                            }
+
+                        }
+                    );
+
+
+                    const myRow =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    myRow.className =
+                        "final-answer-row";
+
+
+                    const myName =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    myName.className =
+                        "final-answer-name";
+
+
+                    myName.innerText =
+                        "You";
+
+
+                    const myValue =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    myValue.className =
+                        "final-answer-value";
+
+
+                    myValue.innerText =
+                        myAnswer || "—";
+
+
+                    myRow.appendChild(
+                        myName
+                    );
+
+
+                    myRow.appendChild(
+                        myValue
+                    );
+
+
+                    item.appendChild(
+                        myRow
+                    );
+
+
+                    const partnerRow =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    partnerRow.className =
+                        "final-answer-row";
+
+
+                    const partnerName =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    partnerName.className =
+                        "final-answer-name";
+
+
+                    partnerName.innerText =
+                        selectedGender === "boy"
+                            ? "Her"
+                            : "Him";
+
+
+                    const partnerValue =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    partnerValue.className =
+                        "final-answer-value";
+
+
+                    partnerValue.innerText =
+                        partnerAnswer || "—";
+
+
+                    partnerRow.appendChild(
+                        partnerName
+                    );
+
+
+                    partnerRow.appendChild(
+                        partnerValue
+                    );
+
+
+                    item.appendChild(
+                        partnerRow
+                    );
+
+
+                    const match =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    match.className =
+                        "final-match";
+
+
+                    match.innerText =
+                        result.sameAnswer
+                            ? "❤️ Same Answer!"
+                            : "💭 Different Answers";
+
+
+                    item.appendChild(
+                        match
+                    );
+
+
+                    finalQuestionList.appendChild(
+                        item
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           PLAY AGAIN
+        ===================================================== */
+
+        coupleQuestionPlayAgainButton.addEventListener(
+            "click",
+            () => {
+
+                coupleQuestionFinalResult.style.display =
+                    "none";
+
+
+                coupleQuestionStartArea.style.display =
+                    "none";
+
+
+                coupleQuestionGameArea.style.display =
+                    "block";
+
+
+                coupleQuestionStatus.innerText =
+                    "Starting a fresh round... ❤️";
+
+
+                socket.emit(
+                    "play-couple-questions-again"
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           CREATE HEART BURST
+        ===================================================== */
+
+        function createHeartBurst() {
+
+            const hearts = [
+                "❤️",
+                "💕",
+                "💗",
+                "💖",
+                "💘"
+            ];
+
+
+            for (
+                let i = 0;
+                i < 8;
+                i++
+            ) {
+
+                const heart =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                heart.className =
+                    "floating-heart";
+
+
+                heart.innerText =
+                    hearts[
+                    Math.floor(
+                        Math.random() *
+                        hearts.length
+                    )
+                    ];
+
+
+                heart.style.left =
+                    `${30 + Math.random() * 40}%`;
+
+
+                heart.style.top =
+                    `${45 + Math.random() * 15}%`;
+
+
+                heart.style.animationDelay =
+                    `${Math.random() * 0.3}s`;
+
+
+                document.body.appendChild(
+                    heart
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        heart.remove();
+
+                    },
+                    2200
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CREATE HEART RAIN
+        ===================================================== */
+
+        function createHeartRain() {
+
+            const hearts = [
+                "❤️",
+                "💕",
+                "💗",
+                "💖",
+                "💘",
+                "🥰"
+            ];
+
+
+            for (
+                let i = 0;
+                i < 15;
+                i++
+            ) {
+
+                const heart =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                heart.className =
+                    "heart-rain";
+
+
+                heart.innerText =
+                    hearts[
+                    Math.floor(
+                        Math.random() *
+                        hearts.length
+                    )
+                    ];
+
+
+                heart.style.left =
+                    `${Math.random() * 100}%`;
+
+
+                heart.style.fontSize =
+                    `${18 + Math.random() * 18}px`;
+
+
+                heart.style.animationDuration =
+                    `${2 + Math.random() * 2}s`;
+
+
+                heart.style.animationDelay =
+                    `${Math.random() * 0.8}s`;
+
+
+                document.body.appendChild(
+                    heart
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        heart.remove();
+
+                    },
+                    5000
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SPECIAL EMOJI
+        ===================================================== */
+
+        function createSpecialEmoji(
+            emoji,
+            type
+        ) {
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.className =
+                "special-emoji";
+
+
+            element.innerText =
+                emoji;
+
+
+            document.body.appendChild(
+                element
+            );
+
+
+            setTimeout(
+                () => {
+
+                    element.remove();
+
+                },
+                1300
+            );
+
+        }
+
+
+        /* =====================================================
+           CAMERA
+        ===================================================== */
+
+        momentButton.addEventListener(
+            "click",
+            () => {
+
+                openCameraModal();
+
+            }
+        );
+
+
+        cameraCloseButton.addEventListener(
+            "click",
+            () => {
+
+                closeCameraModal();
+
+            }
+        );
+
+
+        cameraCloseBottomButton.addEventListener(
+            "click",
+            () => {
+
+                closeCameraModal();
+
+            }
+        );
+
+
+        cameraModeButton.addEventListener(
+            "click",
+            async () => {
+
+                currentFacingMode =
+                    currentFacingMode === "user"
+                        ? "environment"
+                        : "user";
+
+
+                await startCamera(
+                    currentFacingMode
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           OPEN CAMERA
+        ===================================================== */
+
+        async function openCameraModal() {
+
+            cameraModal.style.display =
+                "flex";
+
+
+            cameraError.style.display =
+                "none";
+
+
+            await startCamera(
+                currentFacingMode
+            );
+
+        }
+
+
+        /* =====================================================
+           START CAMERA
+        ===================================================== */
+
+        async function startCamera(
+            facingMode
+        ) {
+
+            stopCamera();
+
+
+            try {
+
+                if (
+                    !navigator.mediaDevices ||
+                    !navigator.mediaDevices.getUserMedia
+                ) {
+
+                    throw new Error(
+                        "Camera API is not available in this browser."
+                    );
+
+                }
+
+
+                cameraStream =
+                    await navigator.mediaDevices
+                        .getUserMedia(
+                            {
+                                video: {
+
+                                    facingMode: {
+                                        ideal:
+                                            facingMode
+                                    },
+
+                                    width: {
+                                        ideal:
+                                            1280
+                                    },
+
+                                    height: {
+                                        ideal:
+                                            720
+                                    }
+
+                                },
+
+                                audio:
+                                    false
+                            }
+                        );
+
+
+                cameraVideo.srcObject =
+                    cameraStream;
+
+
+                await cameraVideo.play();
+
+
+                cameraError.style.display =
+                    "none";
+
+
+                updateCameraLabel();
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Camera error:",
+                    error
+                );
+
+
+                cameraError.style.display =
+                    "block";
+
+
+                if (
+                    location.protocol !==
+                    "https:" &&
+                    location.hostname !==
+                    "localhost" &&
+                    location.hostname !==
+                    "127.0.0.1"
+                ) {
+
+                    cameraErrorText.innerText =
+                        "Your browser requires HTTPS to access the camera. We will enable HTTPS for the phone in the next step.";
+
+                }
+                else if (
+                    error.name ===
+                    "NotAllowedError"
+                ) {
+
+                    cameraErrorText.innerText =
+                        "Camera permission was denied. Allow camera access in your browser settings and try again.";
+
+                }
+                else {
+
+                    cameraErrorText.innerText =
+                        "Could not start the camera. Please check camera permission and try again.";
+
+                }
+
+            }
+
+        }
+
+
+        /* =====================================================
+           UPDATE CAMERA LABEL
+        ===================================================== */
+
+        function updateCameraLabel() {
+
+            if (
+                currentFacingMode ===
+                "user"
+            ) {
+
+                cameraModeButton.innerText =
+                    "🤳";
+
+
+                cameraModeText.innerText =
+                    "Front";
+
+
+                cameraLabel.innerText =
+                    "Front Camera";
+
+            }
+            else {
+
+                cameraModeButton.innerText =
+                    "📷";
+
+
+                cameraModeText.innerText =
+                    "Back";
+
+
+                cameraLabel.innerText =
+                    "Back Camera";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           STOP CAMERA
+        ===================================================== */
+
+        function stopCamera() {
+
+            if (
+                cameraStream
+            ) {
+
+                cameraStream
+                    .getTracks()
+                    .forEach(
+                        (track) => {
+
+                            track.stop();
+
+                        }
+                    );
+
+
+                cameraStream =
+                    null;
+
+            }
+
+
+            cameraVideo.srcObject =
+                null;
+
+        }
+
+
+        /* =====================================================
+           CLOSE CAMERA
+        ===================================================== */
+
+        function closeCameraModal() {
+
+            stopCamera();
+
+
+            cameraModal.style.display =
+                "none";
+
+        }
+
+
+        /* =====================================================
+           CAPTURE PHOTO
+        ===================================================== */
+
+        captureButton.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    !cameraStream ||
+                    !cameraVideo.videoWidth
+                ) {
+
+                    return;
+
+                }
+
+
+                const width =
+                    cameraVideo.videoWidth;
+
+
+                const height =
+                    cameraVideo.videoHeight;
+
+
+                photoCanvas.width =
+                    width;
+
+
+                photoCanvas.height =
+                    height;
+
+
+                const context =
+                    photoCanvas.getContext(
+                        "2d"
+                    );
+
+
+                context.drawImage(
+                    cameraVideo,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
+
+                photoCanvas.toBlob(
+                    (blob) => {
+
+                        if (!blob) {
+
+                            return;
+
+                        }
+
+
+                        capturedPhotoBlob =
+                            blob;
+
+
+                        const url =
+                            URL.createObjectURL(
+                                blob
+                            );
+
+
+                        capturedPhoto.src =
+                            url;
+
+
+                        closeCameraModal();
+
+
+                        photoPreviewScreen.style.display =
+                            "flex";
+
+                    },
+                    "image/jpeg",
+                    0.82
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           CLOSE PHOTO PREVIEW
+        ===================================================== */
+
+        photoPreviewCloseButton.addEventListener(
+            "click",
+            () => {
+
+                closePhotoPreview();
+
+            }
+        );
+
+
+        /* =====================================================
+           RETAKE
+        ===================================================== */
+
+        retakeButton.addEventListener(
+            "click",
+            async () => {
+
+                closePhotoPreview();
+
+                await openCameraModal();
+
+            }
+        );
+
+
+        /* =====================================================
+           CLOSE PHOTO PREVIEW
+        ===================================================== */
+
+        function closePhotoPreview() {
+
+            if (
+                capturedPhoto.src
+            ) {
+
+                URL.revokeObjectURL(
+                    capturedPhoto.src
+                );
+
+            }
+
+
+            capturedPhoto.src =
+                "";
+
+
+            capturedPhotoBlob =
+                null;
+
+
+            photoPreviewScreen.style.display =
+                "none";
+
+        }
+
+
+        /* =====================================================
+           SEND PHOTO
+        ===================================================== */
+
+        sendPhotoButton.addEventListener(
+            "click",
+            () => {
+
+                /*
+                    Actual photo transfer will be
+                    enabled in the next camera step.
+        
+                    For now this keeps the preview flow
+                    working without breaking the app.
+                */
+
+                message.innerText =
+                    "📸 Moment ready to send ❤️";
+
+
+                createHeartBurst();
+
+
+                closePhotoPreview();
+
+            }
+        );
+
+
+        /* =====================================================
+           SOCKET CONNECTED
+        ===================================================== */
+
+        socket.on(
+            "connect",
+            () => {
+
+                console.log(
+                    "💗 Connected:",
+                    socket.id
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           SOCKET DISCONNECTED
+        ===================================================== */
+
+        socket.on(
+            "disconnect",
+            () => {
+
+                console.log(
+                    "💔 Disconnected"
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
