@@ -929,6 +929,52 @@ io.on(
             }
         );
 
+        /* =====================================================
+   📸 SEND PHOTO
+===================================================== */
+
+        socket.on(
+            "send-photo",
+            (data) => {
+
+                if (
+                    socket.roomCode !==
+                    COUPLE_ROOM
+                ) {
+                    return;
+                }
+
+                if (
+                    !data ||
+                    typeof data.image !==
+                    "string"
+                ) {
+                    return;
+                }
+
+                console.log(
+                    `📸 Photo received from ${socket.id}`
+                );
+
+                /*
+                   Send photo only to partner.
+                   Photo is NOT stored on server.
+                */
+
+                socket
+                    .to(COUPLE_ROOM)
+                    .emit(
+                        "receive-photo",
+                        {
+                            image: data.image,
+                            senderId: socket.id,
+                            timestamp:
+                                new Date().toISOString()
+                        }
+                    );
+
+            }
+        );
 
         /* =================================================
            🎯 START / NEXT QUESTION

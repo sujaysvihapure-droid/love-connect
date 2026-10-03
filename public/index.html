@@ -5440,22 +5440,104 @@
             "click",
             () => {
 
-                /*
-                    Actual photo transfer will be
-                    enabled in the next camera step.
-        
-                    For now this keeps the preview flow
-                    working without breaking the app.
-                */
+                if (
+                    !capturedPhotoBlob
+                ) {
+                    message.innerText =
+                        "⚠️ Photo not ready";
+
+                    return;
+                }
+
+                const reader =
+                    new FileReader();
+
+                reader.onload =
+                    () => {
+
+                        const image =
+                            reader.result;
+
+                        socket.emit(
+                            "send-photo",
+                            {
+                                image: image
+                            }
+                        );
+
+                        message.innerText =
+                            "📸 Moment sent ❤️";
+
+                        createHeartBurst();
+
+                        closePhotoPreview();
+
+                    };
+
+                reader.readAsDataURL(
+                    capturedPhotoBlob
+                );
+
+            }
+        );
+
+        /* =====================================================
+   📸 RECEIVE PHOTO
+===================================================== */
+
+        socket.on(
+            "receive-photo",
+            (data) => {
+
+                if (
+                    !data ||
+                    !data.image
+                ) {
+                    return;
+                }
 
                 message.innerText =
-                    "📸 Moment ready to send ❤️";
-
+                    "📸 You received a Moment ❤️";
 
                 createHeartBurst();
 
+                const receivedImage =
+                    document.createElement(
+                        "img"
+                    );
 
-                closePhotoPreview();
+                receivedImage.src =
+                    data.image;
+
+                receivedImage.alt =
+                    "Moment from your partner";
+
+                receivedImage.style.width =
+                    "100%";
+
+                receivedImage.style.maxWidth =
+                    "320px";
+
+                receivedImage.style.display =
+                    "block";
+
+                receivedImage.style.margin =
+                    "12px auto";
+
+                receivedImage.style.borderRadius =
+                    "20px";
+
+                receivedImage.style.boxShadow =
+                    "0 10px 30px rgba(0,0,0,0.35)";
+
+                responseArea.appendChild(
+                    receivedImage
+                );
+
+                responseArea.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
 
             }
         );
