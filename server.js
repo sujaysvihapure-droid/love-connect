@@ -26,7 +26,7 @@ const ANNIVERSARY_DATE = "25/12/2019";
 
 const COUPLE_ROOM = "private-couple-room-01";
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 
 /* =====================================================
