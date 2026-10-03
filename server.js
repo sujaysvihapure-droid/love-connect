@@ -1558,11 +1558,10 @@ io.on(
 
 server.listen(
     PORT,
+    "0.0.0.0",
     () => {
-
         console.log(
             `💗 Love Connect running at http://localhost:${PORT}`
         );
-
     }
 );
