@@ -1,3 +1,8 @@
+
+require("dotenv").config();
+
+const webpush = require("web-push");
+
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
@@ -17,6 +22,13 @@ app.use(
     )
 );
 
+app.use(express.json());
+
+app.get("/push-public-key", (req, res) => {
+    res.json({
+        publicKey: process.env.VAPID_PUBLIC_KEY
+    });
+});
 
 /* =====================================================
    CONFIG
@@ -28,6 +40,12 @@ const COUPLE_ROOM = "private-couple-room-01";
 
 const PORT = process.env.PORT || 3000;
 
+webpush.setVapidDetails(
+    "mailto:sujaysvihapure@gmail.com",
+    process.env.VAPID_PUBLIC_KEY,
+    process.env.VAPID_PRIVATE_KEY
+);
+
 
 /* =====================================================
    GLOBAL
@@ -35,6 +53,70 @@ const PORT = process.env.PORT || 3000;
 
 let kissCount = 0;
 
+let pushSubscriptions = {
+    boy: null,
+    girl: null
+};
+
+/* =====================================================
+   🔔 SEND PUSH NOTIFICATION
+===================================================== */
+
+async function sendPushNotification(
+    targetGender,
+    title,
+    body
+) {
+
+    const subscription =
+        pushSubscriptions[targetGender];
+
+    if (!subscription) {
+
+        console.log(
+            `🔕 No push subscription for ${targetGender}`
+        );
+
+        return;
+    }
+
+    try {
+
+        await webpush.sendNotification(
+            subscription,
+            JSON.stringify({
+                title: title,
+                body: body
+            })
+        );
+
+        console.log(
+            `🔔 Push notification sent to ${targetGender}`
+        );
+
+    } catch (error) {
+
+        console.error(
+            `❌ Push notification failed for ${targetGender}:`,
+            error.statusCode || error.message
+        );
+
+        if (
+            error.statusCode === 404 ||
+            error.statusCode === 410
+        ) {
+
+            pushSubscriptions[targetGender] =
+                null;
+
+            console.log(
+                `🗑️ Removed expired push subscription for ${targetGender}`
+            );
+
+        }
+
+    }
+}
 
 /* =====================================================
    SURPRISE MESSAGES
@@ -429,6 +511,36 @@ io.on(
             socket.id
         );
 
+        socket.on("register-push-subscription", (subscription) => {
+
+            if (
+                socket.roomCode !== COUPLE_ROOM
+            ) {
+                return;
+            }
+
+            if (
+                !subscription ||
+                typeof subscription !== "object"
+            ) {
+                return;
+            }
+
+            if (
+                socket.gender !== "boy" &&
+                socket.gender !== "girl"
+            ) {
+                return;
+            }
+
+            pushSubscriptions[socket.gender] =
+                subscription;
+
+            console.log(
+                `🔔 Push subscription registered for ${socket.gender}`
+            );
+        });
+
 
         /* =================================================
            CHECK DATE
@@ -521,36 +633,28 @@ io.on(
             }
         );
 
-
         /* =================================================
-           ❤️ NORMAL LOVE
-        ================================================= */
+   ❤️ NORMAL LOVE
+================================================= */
 
         socket.on(
             "send-love",
-            (data) => {
+            async (data) => {
 
                 if (
                     socket.roomCode !==
                     COUPLE_ROOM
                 ) {
-
                     return;
-
                 }
-
 
                 if (!data) {
-
                     return;
-
                 }
-
 
                 console.log(
                     `❤️ ${data.type}: ${data.message}`
                 );
-
 
                 socket
                     .to(COUPLE_ROOM)
@@ -559,9 +663,24 @@ io.on(
                         data
                     );
 
+
+                /* =================================================
+                   🔔 PUSH NOTIFICATION
+                ================================================= */
+
+                const targetGender =
+                    socket.gender === "boy"
+                        ? "girl"
+                        : "boy";
+
+                await sendPushNotification(
+                    targetGender,
+                    "Love Connect ❤️",
+                    data.message
+                );
+
             }
         );
-
 
         /* =================================================
            🎲 SURPRISE LOVE
