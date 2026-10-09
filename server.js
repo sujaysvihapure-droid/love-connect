@@ -989,7 +989,7 @@ io.on(
 
         socket.on(
             "send-chat-message",
-            (data) => {
+            async (data) => {
 
                 if (
                     socket.roomCode !==
@@ -1045,12 +1045,25 @@ io.on(
                         chatData
                     );
 
-            }
-        );
+                /* 🔔 NEW CHAT MESSAGE PUSH */
+
+                const targetGender =
+                    socket.gender === "boy"
+                        ? "girl"
+                        : "boy";
+
+                await sendPushNotification(
+                    targetGender,
+                    "Love Connect ❤️",
+                    "💬 You have new messages"
+                );
+
+            } 
+        );    
 
         /* =====================================================
-   📸 SEND PHOTO
-===================================================== */
+        📸 SEND PHOTO
+        ===================================================== */
 
         socket.on(
             "send-photo",
